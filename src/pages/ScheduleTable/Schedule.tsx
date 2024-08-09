@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import "./Schedule.css";
 import {Employees} from "../../entities/Employees";
 import {formatDay, getDate, isHoliday} from "../../features/TimeController";
@@ -21,7 +21,12 @@ const Schedule: React.FC<ScheduleProps> = ({ startDate, fullTimeEmployees, partT
     const hyobin = getFullTimeEmployeeName(fullTimeEmployees,"HYOBIN");
     const yunseon = getFullTimeEmployeeName(fullTimeEmployees,"YUNSEON");
 
-    const employeeNamesByColumn = getEmployeeNamesForSchedule();
+    const [employeeNames, setEmployeeNames] = useState<[string, string]>(['', '']);
+
+    useEffect(() => {
+        const [firstEmployee, secondEmployee] = getEmployeeNamesForSchedule();
+        setEmployeeNames([firstEmployee, secondEmployee]);
+    }, []);
 
     const [data, setData] = useState<{ [key: number]: string[] }>({});
     const [isEditing, setIsEditing] = useState<{ rowIndex: number; cellIndex: number } | null>(null);
@@ -95,7 +100,7 @@ const Schedule: React.FC<ScheduleProps> = ({ startDate, fullTimeEmployees, partT
                     <th rowSpan={6}>Lunch</th>
                     <td className="side">A</td>
                     <td>11:00-3:30</td>
-                    <td className="schedule editable">{employeeNamesByColumn[0]}</td>
+                    <td className="schedule editable">{employeeNames[0]}</td>
                     {generateCells({
                         rowIndex: 2,
                         startCellIndex: 2,
@@ -104,7 +109,7 @@ const Schedule: React.FC<ScheduleProps> = ({ startDate, fullTimeEmployees, partT
                         editName,
                         isEditing
                     })}
-                    <td className="schedule editable">{employeeNamesByColumn[1]}</td>
+                    <td className="schedule editable">{employeeNames[1]}</td>
                 </tr>
                 <tr>
                     <td className="side">B</td>
@@ -123,7 +128,7 @@ const Schedule: React.FC<ScheduleProps> = ({ startDate, fullTimeEmployees, partT
                 <tr>
                     <td className="side">BAR</td>
                     <td>11:00-3:30</td>
-                    <td className="schedule editable">{employeeNamesByColumn[1]}</td>
+                    <td className="schedule editable">{employeeNames[1]}</td>
                     {generateCells({
                         rowIndex: 4,
                         startCellIndex: 2,
@@ -132,7 +137,7 @@ const Schedule: React.FC<ScheduleProps> = ({ startDate, fullTimeEmployees, partT
                         editName,
                         isEditing
                     })}
-                    <td className="schedule editable">{employeeNamesByColumn[0]}</td>
+                    <td className="schedule editable">{employeeNames[0]}</td>
                 </tr>
                 <tr>
                     <td className="side">A</td>
@@ -178,7 +183,7 @@ const Schedule: React.FC<ScheduleProps> = ({ startDate, fullTimeEmployees, partT
                     <th rowSpan={11}>Dinner</th>
                     <td className="side">A</td>
                     <td>3:30-1st CUT</td>
-                    <td className="schedule editable">{employeeNamesByColumn[0]}</td>
+                    <td className="schedule editable">{employeeNames[0]}</td>
                     {generateCells({
                         rowIndex: 8,
                         startCellIndex: 2,
@@ -187,7 +192,7 @@ const Schedule: React.FC<ScheduleProps> = ({ startDate, fullTimeEmployees, partT
                         editName,
                         isEditing
                     })}
-                    <td className="schedule editable">{employeeNamesByColumn[1]}</td>
+                    <td className="schedule editable">{employeeNames[1]}</td>
                 </tr>
                 <tr>
                     <td className="side">B</td>
@@ -204,7 +209,7 @@ const Schedule: React.FC<ScheduleProps> = ({ startDate, fullTimeEmployees, partT
                 <tr>
                     <td className="side">BAR</td>
                     <td>3:30-1st CUT</td>
-                    <td className="schedule editable">{employeeNamesByColumn[1]}</td>
+                    <td className="schedule editable">{employeeNames[1]}</td>
                     {generateCells({
                         rowIndex: 10,
                         startCellIndex: 2,
@@ -213,7 +218,7 @@ const Schedule: React.FC<ScheduleProps> = ({ startDate, fullTimeEmployees, partT
                         editName,
                         isEditing
                     })}
-                    <td className="schedule editable">{employeeNamesByColumn[0]}</td>
+                    <td className="schedule editable">{employeeNames[0]}</td>
                 </tr>
                 <tr>
                     <td className="side">A</td>
