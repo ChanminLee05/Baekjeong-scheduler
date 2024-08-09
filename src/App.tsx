@@ -1,24 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import {Employees, partTimeEmployeeSchedule, fullTimeEmployeeSchedule} from "./entities/Employees";
+import Checkbox from "./pages/Checkbox/Checkbox";
 
 function App() {
+  const [startDate, setStartDate] = useState<string | null>("N/A");
+  const [fullTimeEmployees, setFullTimeEmployees] = useState(fullTimeEmployeeSchedule);
+  const [partTimeEmployees, setPartTimeEmployees] = useState(partTimeEmployeeSchedule);
+
+    const handleEmployeeAvailabilityChange = (updatedFullTimeEmployees: Employees[], updatedPartTimeEmployees: Employees[]) => {
+        setFullTimeEmployees(updatedFullTimeEmployees);
+        setPartTimeEmployees(updatedPartTimeEmployees);
+    };
+
+  const handleDate = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setStartDate(e.target.value);
+  }
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="main-page">
+      <h1>Baekjeong Scheduler</h1>
+      <Checkbox fullTimeEmployees={fullTimeEmployees} partTimeEmployees={partTimeEmployees} onAvailabilityChange={handleEmployeeAvailabilityChange}/>
+      <p>Select Start Date</p>
+      <input type="date" id="date-input" onChange={handleDate}/>
     </div>
   );
 }
