@@ -8,8 +8,8 @@ export interface Employees {
 
 export const fullTimeEmployeeSchedule: Employees[] = [
     { name: "WILL", availableDay: ["SUN", "MON", "TUE", "WED", "FRI"], availableShift: ["11:00-3:30", "12:30-4:30", "3:30-1st CUT", "4:00-LC", "4:30-2nd CUT", "5:30-STAY"], availablePosition: ["Manager", "HOST"], maxShifts: 2},
-    { name: "HYOBIN", availableDay: ["SUN", "WED", "THU", "FRI", "SAT"], availableShift: ["11:00-3:30", "12:30-4:30", "3:30-1st CUT", "4:00-LC", "4:30-2nd CUT", "5:30-STAY"], availablePosition : ["A", "B", "BAR", "HOST"], maxShifts: 3},
-    { name: "YUNSEON", availableDay: ["SUN", "MON", "THU", "FRI", "SAT"], availableShift: ["11:00-3:30", "12:30-4:30", "3:30-1st CUT", "4:30-2nd CUT", "5:30-STAY"], availablePosition : ["A", "B", "BAR"], maxShifts: 3},
+    { name: "HYOBIN", availableDay: ["SUN", "WED", "THU", "FRI", "SAT"], availableShift: ["11:00-3:30", "12:30-4:30", "3:30-1st CUT", "4:00-LC", "4:30-2nd CUT", "5:30-STAY"], availablePosition : ["A", "B", "BAR", "HOST"], maxShifts: 5},
+    { name: "YUNSEON", availableDay: ["SUN", "MON", "THU", "FRI", "SAT"], availableShift: ["11:00-3:30", "12:30-4:30", "3:30-1st CUT", "4:30-2nd CUT", "5:30-STAY"], availablePosition : ["A", "B", "BAR"], maxShifts: 5},
 ]
 export const partTimeEmployeeSchedule: Employees[] =[
     { name: "LEO", availableDay: ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"], availableShift: ["11:00-3:30", "12:30-4:30", "3:30-1st CUT", "4:30-2nd CUT", "5:30-STAY"], availablePosition : ["A", "B", "BAR"], maxShifts: 3},
